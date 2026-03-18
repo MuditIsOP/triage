@@ -1,0 +1,11 @@
+node_modules
+.next
+dist
+.env
+coverage
+npm-debug.log*
+
+# Ignore specific markdown files
+PRD.md
+Design.md
+PRESENTATION_SOURCE.md

@@ -1,0 +1,40 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsup",
+    "start": "node dist/server.js",
+    "seed": "tsx src/scripts/seed.ts",
+    "test:auth-smoke": "tsx src/scripts/auth-smoke.ts",
+    "test:demo-smoke": "tsx src/scripts/demo-smoke.ts",
+    "test:llm-smoke": "tsx src/scripts/llm-smoke.ts",
+    "test:triage-smoke": "tsx src/scripts/triage-smoke.ts",
+    "test:workflow-smoke": "tsx src/scripts/workflow-smoke.ts"
+  },
+  "dependencies": {
+    "@er-triage/shared": "file:../shared",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.2",
+    "openai": "^5.20.3",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^24.7.2",
+    "@types/supertest": "^6.0.3",
+    "mongodb-memory-server": "^10.2.3",
+    "supertest": "^7.1.4",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.3"
+  }
+}

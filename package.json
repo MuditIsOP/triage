@@ -1,0 +1,21 @@
+{
+  "name": "er-triage-management-system",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n backend,frontend -c cyan,magenta \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "start": "concurrently -k -n backend,frontend -c cyan,magenta \"npm run start --workspace backend\" \"npm run start --workspace frontend\"",
+    "dev:backend": "npm run dev --workspace backend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "build": "npm run build --workspace shared && npm run build --workspace backend && npm run build --workspace frontend",
+    "seed": "npm run seed --workspace backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

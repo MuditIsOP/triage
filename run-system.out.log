@@ -1,0 +1,32 @@
+
+> er-triage-management-system@1.0.0 dev
+> concurrently -k -n backend,frontend -c cyan,magenta "npm run dev:backend" "npm run dev:frontend"
+
+[backend] 
+[backend] > er-triage-management-system@1.0.0 dev:backend
+[backend] > npm run dev --workspace backend
+[backend] 
+[frontend] 
+[frontend] > er-triage-management-system@1.0.0 dev:frontend
+[frontend] > npm run dev --workspace frontend
+[frontend] 
+[frontend] 
+[frontend] > frontend@1.0.0 dev
+[frontend] > next dev
+[frontend] 
+[backend] 
+[backend] > backend@1.0.0 dev
+[backend] > tsx watch src/server.ts
+[backend] 
+[frontend]  ⚠ Port 3000 is in use by process 27252, using available port 3007 instead.
+[frontend]    ▲ Next.js 15.5.13
+[frontend]    - Local:        http://localhost:3007
+[frontend]    - Network:      http://10.151.35.87:3007
+[frontend] 
+[frontend]  ✓ Starting...
+[backend] MongoDB connected successfully
+[backend] Backend listening on http://localhost:5000
+[frontend]  ✓ Ready in 2.1s
+[backend] npm run dev:backend exited with code 3221225786
+--> Sending SIGTERM to other processes..
+[frontend] npm run dev:frontend exited with code 3221225786
