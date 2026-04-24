@@ -3,6 +3,7 @@
 import { DataSource, LlmStatus, PatientGuidancePromptKey, PatientStatus, Priority, RiskFlag } from "@er-triage/shared";
 import { create } from "zustand";
 import { ApiClientError, apiFetch } from "@/lib/api-client";
+import { useSystemStore } from "@/store/use-system-store";
 
 export type QueuePatient = {
   patientId: string;
@@ -253,6 +254,10 @@ type PatientStore = {
 const getErrorMessage = (error: unknown, fallback: string) =>
   error instanceof ApiClientError ? error.message : fallback;
 
+const refreshOverviewAfterMutation = async (token: string) => {
+  await useSystemStore.getState().loadOverview(token);
+};
+
 export const usePatientStore = create<PatientStore>((set, get) => ({
   patients: [],
   selectedPatientId: null,
@@ -343,6 +348,7 @@ export const usePatientStore = create<PatientStore>((set, get) => ({
         selectedPatientId: data.patient.patientId,
         isSubmitting: false,
       }));
+      await refreshOverviewAfterMutation(token);
       return data.patient;
     } catch (error) {
       set({ isSubmitting: false, error: getErrorMessage(error, "Unable to create patient") });
@@ -368,6 +374,7 @@ export const usePatientStore = create<PatientStore>((set, get) => ({
         selectedPatientId: data.patient.patientId,
         isSubmitting: false,
       }));
+      await refreshOverviewAfterMutation(token);
       return data.patient;
     } catch (error) {
       set({ isSubmitting: false, error: getErrorMessage(error, "Unable to create quick entry patient") });
@@ -393,6 +400,7 @@ export const usePatientStore = create<PatientStore>((set, get) => ({
         selectedPatientId: data.patient.patientId,
         isSubmitting: false,
       }));
+      await refreshOverviewAfterMutation(token);
       return data.patient;
     } catch (error) {
       set({ isSubmitting: false, error: getErrorMessage(error, "Unable to update patient") });
@@ -418,6 +426,7 @@ export const usePatientStore = create<PatientStore>((set, get) => ({
         selectedPatientId: data.patient.patientId,
         isSubmitting: false,
       }));
+      await refreshOverviewAfterMutation(token);
       return data.patient;
     } catch (error) {
       set({ isSubmitting: false, error: getErrorMessage(error, "Unable to update patient status") });
@@ -443,6 +452,7 @@ export const usePatientStore = create<PatientStore>((set, get) => ({
         selectedPatientId: data.patient.patientId,
         isSubmitting: false,
       }));
+      await refreshOverviewAfterMutation(token);
       return data.patient;
     } catch (error) {
       set({ isSubmitting: false, error: getErrorMessage(error, "Unable to apply override") });
@@ -463,6 +473,7 @@ export const usePatientStore = create<PatientStore>((set, get) => ({
         selectedPatientId: data.patient.patientId,
         isSubmitting: false,
       }));
+      await refreshOverviewAfterMutation(token);
       return data.patient;
     } catch (error) {
       set({ isSubmitting: false, error: getErrorMessage(error, "Unable to clear override") });
@@ -489,6 +500,7 @@ export const usePatientStore = create<PatientStore>((set, get) => ({
           isSubmitting: false,
         };
       });
+      await refreshOverviewAfterMutation(token);
     } catch (error) {
       set({ isSubmitting: false, error: getErrorMessage(error, "Unable to delete patient") });
       throw error;
@@ -512,6 +524,7 @@ export const usePatientStore = create<PatientStore>((set, get) => ({
         selectedPatientId: data.patients[0]?.patientId ?? state.selectedPatientId,
         isGeneratingDemo: false,
       }));
+      await refreshOverviewAfterMutation(token);
     } catch (error) {
       set({ isGeneratingDemo: false, error: getErrorMessage(error, "Unable to generate demo patients") });
       throw error;

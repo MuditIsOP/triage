@@ -308,6 +308,7 @@ Implemented dashboard features:
 - bed tiles, hover previews, summary boxes, and detail sections now use stronger glassmorphism surfaces instead of flat opaque white panels
 - notification center now renders above the dashboard stack, bed tiles use clearer critical/general color separation, and flat vitals traces show as stable snapshots rather than unreadable straight-line charts
 - system summary sits near the top of the dashboard for immediate visibility
+- system summary now refreshes immediately after patient create, demo generation, update, override, status change, and delete actions
 - center queue: compact grid with switchable sorting by priority, waiting time, score, bed assignment, or name
 - right panel: AI summary, risk flags, vitals graph, notes, override tools, audit preview, beds, and activity feed
 - patient-specific AI guide popup for doctor and nurse roles with fixed one-click clinical guidance prompts
@@ -422,4 +423,3 @@ The backend was also started successfully against the local `.env` and logged:
 
 - `MongoDB connected successfully`
 - `Backend listening on http://localhost:5000`
-
