@@ -103,6 +103,11 @@ run-system.cmd
 ```
 
 Both launchers resolve the repository root dynamically from their own file location, so they remain portable when the project is cloned into a different parent folder.
+They are now first-time setup friendly:
+
+- auto-create `.env` from `.env.example` when missing
+- auto-run `npm install` when `node_modules` is not present
+- keep the terminal open with actionable error hints if startup fails (instead of closing immediately)
 
 For a production-style combined start after building:
 
@@ -309,6 +314,7 @@ Implemented dashboard features:
 - notification center now renders above the dashboard stack, bed tiles use clearer critical/general color separation, and flat vitals traces show as stable snapshots rather than unreadable straight-line charts
 - system summary sits near the top of the dashboard for immediate visibility
 - system summary now refreshes immediately after patient create, demo generation, update, override, status change, and delete actions
+- clinical updates now auto-retry once on optimistic-lock conflicts by refreshing the latest patient version first, which keeps remarks, vitals, and note updates usable even while demo/simulated records are changing in the background
 - center queue: compact grid with switchable sorting by priority, waiting time, score, bed assignment, or name
 - right panel: AI summary, risk flags, vitals graph, notes, override tools, audit preview, beds, and activity feed
 - patient-specific AI guide popup for doctor and nurse roles with fixed one-click clinical guidance prompts
